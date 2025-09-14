@@ -12,4 +12,7 @@ public:
 private:
     GLFWwindow* m_Window;
     ImGuiWindowFlags m_WindowFlags;
+
+    bool m_showSettings = false;
+    bool m_useDarkMode = true;
 };

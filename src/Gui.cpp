@@ -26,6 +26,38 @@ void Gui::RenderGui() {
 
     ImGui::Begin("ImGui Testing", nullptr, m_WindowFlags);
 
+    if (ImGui::BeginMenuBar()) {
+        if (ImGui::BeginMenu("View")) {
+            if (ImGui::MenuItem("Settings"))
+                m_showSettings = true;
+
+            ImGui::EndMenu();
+        }
+
+        ImGui::EndMenuBar();
+    }
+
+    if (m_showSettings) {
+        ImGui::Begin("Settings", nullptr, m_WindowFlags);
+        ImGui::SetWindowFocus("Settings");
+
+        if (ImGui::BeginMenuBar()) {
+            if (ImGui::MenuItem("Close"))
+                m_showSettings = false;
+
+            ImGui::EndMenuBar();
+        }
+
+        if (ImGui::Checkbox("Dark Mode", &m_useDarkMode)) {
+            if (m_useDarkMode)
+                ImGui::StyleColorsDark();
+            else
+                ImGui::StyleColorsLight();
+        }
+
+        ImGui::End();
+    }
+
     ImGui::Text("You should use arch btw");
 
     ImGui::End();
